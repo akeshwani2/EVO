@@ -3,17 +3,17 @@ import React from "react";
 
 const page = () => {
   return (
-    <main className="min-h-screen bg-black flex flex-col gap-4">
+    <main className="min-h-screen bg-black flex flex-col gap-10">
       <div className="flex items-center justify-center w-full">
         <h2 className="text-4xl tracking-tight bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent mt-4">
           Welcome to AXIS
         </h2>
       </div>
-      <div className="ml-3">
+      <div className="ml-3 border-transparent bg-gradient-to-b from-transparent to-gray-500 rounded-md max-w-3xl">
         <h2 className="text-2xl tracking-tight bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
           What is AXIS?
         </h2>
-        <p className="text-white max-w-3xl">
+        <p className="text-white max-w-3xl ml-1">
           AXIS is designed to streamline and enhance user interactions with
           advanced AI capabilities. By leveraging the latest version of Next.js
           for the frontend, AXIS allows users to input messages and receive
@@ -27,6 +27,26 @@ const page = () => {
           performance. Additionally, prompt caching is employed to significantly
           reduce latency and costs, making AXIS a fast and cost-effective
           solution for complex AI-driven interactions.
+        </p>
+      </div>
+      <div className="ml-3 border-transparent bg-gradient-to-b from-transparent to-gray-500 rounded-md max-w-3xl">
+        <h2 className="text-2xl tracking-tight bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
+          What is an AI Agent
+        </h2>
+        <p className="text-white max-w-3xl ml-1">
+          An AI Agent is designed to revolutionize user interactions by
+          integrating advanced AI capabilities into a seamless interface.
+          Utilizing the latest version of Next.js for the frontend, it allows
+          users to input messages and receive intelligent, context-aware
+          responses. The AI Agent connects with a sophisticated language model
+          (LLM) to process queries, leveraging predefined APIs to determine the
+          most suitable actions and responses. This includes functionalities
+          like retrieving YouTube video transcriptions and enabling dynamic,
+          conversational interactions. Supported by a robust Convex database and
+          secure authentication through Clerk, the AI Agent ensures efficient
+          and secure performance. Additionally, it employs prompt caching to
+          significantly reduce latency and costs, providing a fast and
+          cost-effective solution for complex AI-driven tasks.
         </p>
       </div>
       <div className="items-center justify-center ml-3">
