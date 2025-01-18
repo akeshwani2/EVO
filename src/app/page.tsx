@@ -1,14 +1,18 @@
 import Image from "next/image";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { useAuth } from "@clerk/nextjs";
-import { ArrowRightCircle, ArrowUpRight } from "lucide-react";
+import { ArrowRightCircle, ArrowUpRight, User } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { dark } from "@clerk/themes";
 export default function Home() {
   return (
     <main className="min-h-screen bg-black flex items-center justify-center">
+      <div className="absolute top-4 right-4">
+        <UserButton />
+      </div>
       <section className="w-full px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8 flex flex-col items-center gap-12">
+
         {/* Hero */}
         <header className="flex flex-col items-center gap-2">
           <h1 className="text-6xl tracking-tighter sm:text-7xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
@@ -46,6 +50,8 @@ export default function Home() {
             </div>
           </SignedIn>
           <SignedOut>
+          <div className="flex flex-row items-center gap-2">
+
             <SignInButton
               mode="modal"
               fallbackRedirectUrl="/dashboard"
@@ -53,10 +59,16 @@ export default function Home() {
             >
               <Button className="bg-white text-black px-4 py-2 rounded-md flex hover:bg-gray-200 items-center gap-2">
                 <span>Get Started</span>
-                <span>Learn More</span>
                 <ArrowRightCircle className="w-4 h-4" />
               </Button>
             </SignInButton>
+            <Link href="/docs">
+                <Button className="bg-white text-black px-4 py-2 rounded-md flex hover:bg-gray-200 items-center gap-2">
+                  <span>Learn More</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
           </SignedOut>
 
           {/* Features */}
