@@ -34,7 +34,7 @@ export default function Home() {
         {/* Call to action */}
         <div className="flex flex-col items-center gap-4">
           <SignedIn>
-            <div className="flex flex-row items-center gap-2">
+            <div className="flex flex-row items-center gap-4">
               <Link href="/dashboard">
                 <Button className="bg-white text-black px-4 py-2 rounded-md flex hover:bg-gray-200 items-center gap-2">
                   <span>Get Started</span>
