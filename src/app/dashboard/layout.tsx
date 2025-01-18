@@ -1,23 +1,27 @@
 "use client";
+
+import Sidebar from "@/components/ui/Sidebar";
+import Header from "@/components/ui/Header";
+import { NavigationProvider } from "@/lib/context/navigation"
 import { Authenticated } from "convex/react";
-import Header from "../../../components/Header";
-import Sidebar from "../../../components/Sidebar";
 
 export default function DashboardLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <div className="flex h-screen">
-      <Authenticated>
-        <Sidebar />
-      </Authenticated>
-      <div className="flex-1 bg-black">
-        <Header />
+    <NavigationProvider>
+      <div className="flex h-screen">
+        <Authenticated>
+          <Sidebar />
+        </Authenticated>
 
-        <main>{children}</main>
+        <div className="flex-1 flex flex-col min-w-0">
+          <Header />
+          <main className="flex-1 overflow-y-auto">{children}</main>
+        </div>
       </div>
-    </div>
+    </NavigationProvider>
   );
 }
