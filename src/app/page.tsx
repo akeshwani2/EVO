@@ -25,7 +25,7 @@ export default function Home() {
             <Link href="https://wxflows.ibm.stepzen.com">
               <span className="text-gray-500 text-sm text-center sm:text-sm md:text-base lg:text-md xl:text-md border border-gray-400 rounded-full py-1 px-3 flex items-center pl-1">
                 <Dot className="w-8 h-8 text-white font-bold animate-pulse" />
-                Powered by IBM WxTools & LLMs
+                Powered by IBM&apos;s watsonx.ai
               </span>
             </Link>
           </div>

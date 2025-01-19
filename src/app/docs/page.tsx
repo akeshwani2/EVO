@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Cpu } from "lucide-react";
 import Link from "next/link";
 const DocsPage = () => {
   return (
@@ -48,7 +48,7 @@ const DocsPage = () => {
       </div>
 
       {/* Feature Cards Grid */}
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-16">
         <div className="bg-zinc-900 rounded-lg p-6 hover:bg-zinc-800/80 transition-colors">
           <div className="mb-4">
             <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,9 +63,7 @@ const DocsPage = () => {
 
         <div className="bg-zinc-900 rounded-lg p-6 hover:bg-zinc-800/80 transition-colors">
           <div className="mb-4">
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7v10c0 2 1 3 3 3h10c2 0 3-1 3-3V7c0-2-1-3-3-3H7c-2 0-3 1-3 3z" />
-            </svg>
+            <Cpu className="w-8 h-8 text-white" />
           </div>
           <h2 className="text-xl font-medium text-white mb-2">Architecture</h2>
           <p className="text-gray-400">
