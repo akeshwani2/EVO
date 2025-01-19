@@ -5,15 +5,33 @@ import { Button } from "@/components/ui/button";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { useNavigation } from "@/lib/context/navigation";
-
+import { useMutation, useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+import { Id } from "../../../convex/_generated/dataModel";
+import ChatRow from "@/components/ui/ChatRow"
 export default function Sidebar() {
   const router = useRouter();
   const { isMobileNavOpen, closeMobileNav } = useNavigation();
+  const createChat = useMutation(api.chats.createChat); // This is a mutation that lets us create a new chat.
+  const deleteChat = useMutation(api.chats.deletChat) // This is a mutation that lets us delete a chat.
 
-  const handleNewChat = () => {
+  const chats = useQuery(api.chats.listChats);
+  const handleClick = () => {
     closeMobileNav();
   };
+  const handleNewChat = async () => {
+    const chatId = await createChat({ title: "New Chat" });
+    router.push(`/dashboard/chat/${chatId}`);
+    closeMobileNav();
+  }
 
+  const handleDeleteChat = async (id: Id<"chats"> ) => {
+    await deleteChat({id});
+
+    if (window.location.pathname.includes(id)) {
+      router.push("/dashboard");
+    }
+  }
   return (
     <>
       {/* Background Overlay for mobile */}
@@ -40,9 +58,12 @@ export default function Sidebar() {
         </div>
 
         <div className="flex-1 overflow-y-auto space-y-2.5 p-4 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
-          {/* Removed chat list mapping */}
+          {chats?.map((chat) => (
+            <ChatRow key={chat._id} chat={chat} onDelete={handleDeleteChat}/>
+          ))}
         </div>
       </div>
     </>
   );
 }
+  

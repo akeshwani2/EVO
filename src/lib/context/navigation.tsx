@@ -9,6 +9,7 @@ interface NavigationContextType {
 }
 
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
+export { NavigationContext };
 
 export function NavigationProvider({ children }: { children: ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -48,3 +49,4 @@ export function useNavigation() {
   }
   return context;
 }
+
