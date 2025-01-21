@@ -278,15 +278,7 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
           {isLoading && !streamedResponse && (
             <div className="flex justify-start animate-in fade-in-0">
               <div className="rounded-2xl px-4 py-3 bg-zinc-800 text-white rounded-bl-none shadow-sm ring-1 ring-inset ring-white/20">
-                <div className="flex items-center gap-1.5">
-                  {[0.3, 0.15, 0].map((delay, i) => (
-                    <div
-                      key={i}
-                      className="h-1.5 w-1.5 rounded-full bg-gray-400 animate-bounce"
-                      style={{ animationDelay: `-${delay}s` }}
-                    />
-                  ))}
-                </div>
+              <span className="animate-slide-right tracking-tighter text-lg bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">EVO</span>
               </div>
             </div>
           )}
@@ -297,8 +289,8 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
       </section>
 
       {/* Footer input */}
-      <footer className="border-t border-white/40 sticky bottom-0 px-4 pt-2 pb-2">
-        <form onSubmit={handleSubmit} className="mx-auto relative">
+      <footer className="border-t border-white/20 sticky bottom-0 p-4">
+        <form onSubmit={handleSubmit} className="mx-auto max-w-4xl relative">
           <div className="relative flex items-center">
             <input
               type="text"

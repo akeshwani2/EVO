@@ -52,11 +52,12 @@ export default function Home() {
             <div className="flex items-center gap-4">
               <SignInButton
                 mode="modal"
+                
                 fallbackRedirectUrl={"/dashboard"}
                 forceRedirectUrl={"/dashboard"}
               >
                 <button className="group relative inline-flex items-center justify-center px-4 py-3.5 text-base font-medium text-black bg-white rounded-lg hover:from-gray-800 hover:to-gray-700 transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 tracking-tighter">
-                  Sign Up
+                  Try EVO
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-0.5" />
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-gray-900/20 to-gray-800/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
@@ -76,27 +77,27 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
           {[
             {
-              title: "Intelligent",
+              title: "YouTube",
               description:
-                "Lightning-quick responses powered by cutting-edge AI",
+                "Extract detailed transcripts from any YouTube video with precise timestamps",
             },
             {
-              title: "Intuitive",
-              description: "Sleek interface with state-of-the-art capabilities",
-            },
-            {
-              title: "Protected",
-              description: "Enterprise-grade security for your peace of mind",
+              title: "And More",
+              description: 
+                "Explore additional tools including Wikipedia, Google Books, and social data analysis",
             },
           ].map(({ title, description }) => (
             <div
               key={title}
-              className="text-center border border-gray-800 rounded-xl px-10 py-6"
+              className="relative text-center border border-gray-800/50 rounded-xl px-8 py-8 bg-gradient-to-b from-gray-900/50 to-transparent backdrop-blur-sm hover:border-gray-700/50 transition-all duration-300 group"
             >
-              <div className="text-3xl tracking-tighter bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
-                {title}
+              <div className="absolute inset-0 bg-gradient-to-b from-gray-500/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative">
+                <div className="text-2xl font-medium tracking-tight bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent mb-3">
+                  {title}
+                </div>
+                <div className="text-sm text-gray-500 leading-relaxed">{description}</div>
               </div>
-              <div className="text-sm text-gray-600 mt-1">{description}</div>
             </div>
           ))}
         </div>

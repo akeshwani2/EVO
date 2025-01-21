@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Star,
-  Brain,
-  Zap,
-  MousePointerClickIcon,
-} from "lucide-react";
+import { Star, Brain, Zap, MousePointerClickIcon, Dot } from "lucide-react";
 import { useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { useNavigation } from "@/lib/context/navigation";
@@ -30,9 +25,13 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 border border-white/60 rounded-lg p-6 md:p-8">
           {/* Left section - Welcome */}
           <div className="space-y-4 md:space-y-6">
+            <div className=" flex items-center text-xs md:text-sm text-zinc-500 border border-white/20 rounded-lg max-w-fit px-2 py-1">
+              <Dot className="w-4 h-4 animate-pulse text-red-500" />
+              BETA
+            </div>
             <div className="space-y-2">
               <h1 className="text-3xl md:text-4xl tracking-tighter text-white">
-                Welcome to <span className="animate-slide-right">EVO</span>
+                Welcome to EVO
               </h1>
               <p className="text-base md:text-lg text-zinc-400">
                 Your AI companion for seamless productivity

@@ -16,6 +16,7 @@ export default function Sidebar() {
   const deleteChat = useMutation(api.chats.deletChat) // This is a mutation that lets us delete a chat.
 
   const chats = useQuery(api.chats.listChats);
+  const pathname = window.location.pathname;
   
   const handleNewChat = async () => {
     const chatId = await createChat({ title: "New Chat" });
@@ -46,7 +47,7 @@ export default function Sidebar() {
           isMobileNavOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="p-4 border-b border-white/5">
+        <div className="p-4 border-b border-white/5 mt-4 md:mt-0">
           <Button
             onClick={handleNewChat}
             className="w-full bg-zinc-800 hover:bg-zinc-700 text-gray-200 border border-white/5 shadow-sm hover:shadow transition-all duration-200"
@@ -57,7 +58,12 @@ export default function Sidebar() {
 
         <div className="flex-1 overflow-y-auto space-y-2.5 p-4 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
           {chats?.map((chat) => (
-            <ChatRow key={chat._id} chat={chat} onDelete={handleDeleteChat}/>
+            <ChatRow 
+              key={chat._id} 
+              chat={chat} 
+              onDelete={handleDeleteChat}
+              isActive={pathname.includes(chat._id)}
+            />
           ))}
         </div>
       </div>
