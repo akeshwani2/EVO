@@ -1,8 +1,6 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useUser } from "@clerk/nextjs";
-import { formatTerminalOutput } from "@/lib/utils";
 
 
 interface MessageBubbleProps {
