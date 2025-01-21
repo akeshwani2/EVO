@@ -24,9 +24,9 @@ export default function Header() {
 
         </div>
         <Link href="/">
-        <div className="bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent text-xl border border-white/10 rounded-md px-2 py-1 hover:translate-y-1 transition-all duration-200 hover:scale-105">
+        <h1 className="text-3xl font-bold tracking-tighter bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent animate-gradient px-1">
             EVO
-          </div>
+          </h1>
           </Link>
         <div className="flex items-center gap-6">
         {/* <Link href="/">

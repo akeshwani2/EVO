@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import React from "react";
 import {
@@ -10,145 +12,180 @@ import {
   BugOff,
   Layers,
   Brain,
+  Database,
 } from "lucide-react";
 import Link from "next/link";
 
 const DocsPage = () => {
   return (
-    <main className="min-h-screen bg-black px-6 md:px-8 py-16">
-      {/* Header */}
-      <div className="max-w-5xl mx-auto mb-16">
-        <div className="flex items-center gap-2 mb-6">
+    <main className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 bg-grid-white/[0.02] -z-10" />
+      <div className="absolute h-full w-full bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+
+      {/* Content Container */}
+      <div className="relative px-6 md:px-8 py-16 max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="mb-8 animate-fade-in">
           <Link href="/">
-            <Button className="flex items-center gap-2 text-white">
-              <ArrowLeft />
+            <button className="group relative px-4 py-2 mb-8 text-sm font-medium text-gray-900 bg-gradient-to-r from-white via-gray-100 to-white rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_2rem_-0.5rem_#ffffff] flex items-center gap-2">
+              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
               Back
-            </Button>
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-white/20 to-gray-100/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+            </button>
           </Link>
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tighter bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent mb-6 animate-gradient">
+            Welcome to EVO
+          </h1>
+          <p className="text-gray-400 text-lg md:text-xl max-w-3xl">
+            EVO is my attempt at creating a general purpose AI agent. Though it is
+            not perfect, it is a work in progress.
+          </p>
         </div>
-        <h1 className="text-4xl font-medium text-white mb-4">Welcome to EVO</h1>
-        <p className="text-gray-400 text-lg mb-8">
-          EVO is my attempt at creating a general purpose AI agent. Though it is
-          not perfect, it is a work in progress.
-        </p>
 
         {/* Info Section */}
-        <div className="bg-zinc-900 rounded-lg p-8 mb-12">
-          <h2 className="text-2xl font-medium text-white mb-6">About EVO</h2>
+        <div className="backdrop-blur-sm bg-zinc-900/50 rounded-2xl p-8 mb-16 border border-white/5 animate-fade-in-up">
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-6">About EVO</h2>
           <div className="space-y-6 text-gray-400">
-            <p>
+            <p className="leading-relaxed">
               EVO is an advanced AI agent built with Next.js, Convex, and
               LangGraph. It processes messages through a sophisticated pipeline,
-              leveraging various tools and APIs to provide intelligent
-              responses.
+              leveraging various tools and APIs to provide intelligent responses.
             </p>
-            <p>Key capabilities include:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>YouTube video transcription and analysis</li>
-              <li>Google Books integration for literature queries</li>
-              <li>Wikipedia information retrieval</li>
-              <li>Mathematical computations and problem-solving</li>
-              <li>Weather information access</li>
+            <p className="font-medium text-white">Key capabilities include:</p>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {[
+                "YouTube video transcription and analysis",
+                "Google Books integration for literature queries",
+                "Summarize your recent emails (coming soon)",
+
+                "Wikipedia information retrieval",
+                "Mathematical computations and problem-solving",
+                "Weather information access"
+              ].map((item, index) => (
+                <li key={index} className="flex items-center gap-2">
+                  <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
-      </div>
 
-      {/* Feature Cards Grid */}
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-        <Link href="/docs/architecture">
-          <div className="bg-zinc-900 rounded-lg p-6 hover:bg-zinc-800/80 transition-colors">
-            <div className="mb-4">
-              <Cpu className="w-8 h-8 text-white" />
-            </div>
-            <h2 className="text-xl font-medium text-white mb-2">
-              Architecture
-            </h2>
-            <p className="text-gray-400">
-              Understand EVO's technical architecture and workflow system.
-            </p>
-          </div>
-        </Link>
+        {/* Feature Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {[
+            {
+              icon: <Cpu className="w-8 h-8" />,
+              title: "Architecture",
+              description: "Understand EVO's technical architecture and workflow system.",
+              href: "/docs/architecture"
+            },
+            {
+              icon: <Layers className="w-8 h-8" />,
+              title: "Prompt Caching",
+              description: "Learn how EVO caches prompts to improve response times.",
+              href: "/docs/caching"
+            },
+            {
+              icon: <Brain className="w-8 h-8" />,
+              title: "IBM's Watsonx.ai flows engine",
+              description: "Learn more about IBM's Watsonx.ai and try it yourself.",
+              href: "https://wxflows.ibm.stepzen.com/?instance=fe8773c2-4192-48fa-8031-83e9c23d4f70&environment=banbakla"
+            }
+          ].map((feature, index) => (
+            <Link href={feature.href} key={index}>
+              <div className="group backdrop-blur-sm bg-zinc-900/50 rounded-2xl p-6 border border-white/5 transition-all duration-300 hover:scale-105 hover:bg-zinc-800/50">
+                <div className="mb-4 text-white/80 group-hover:text-white transition-colors">
+                  {feature.icon}
+                </div>
+                <h2 className="text-xl font-semibold text-white mb-2">
+                  {feature.title}
+                </h2>
+                <p className="text-gray-400">
+                  {feature.description}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
 
-        <Link href="/docs/caching">
-          <div className="bg-zinc-900 rounded-lg p-6 hover:bg-zinc-800/80 transition-colors">
-            <div className="mb-4">
-              <Layers className="w-8 h-8 text-white" />
-            </div>
-            <h2 className="text-xl font-medium text-white mb-2">
-              Prompt Caching
-            </h2>
-            <p className="text-gray-400">
-              Learn how EVO caches prompts to improve response times.
-            </p>
-          </div>
-        </Link>
-        <Link href="https://wxflows.ibm.stepzen.com/?instance=fe8773c2-4192-48fa-8031-83e9c23d4f70&environment=banbakla">
-          <div className="bg-zinc-900 rounded-lg p-6 hover:bg-zinc-800/80 transition-colors">
-            <div className="mb-4">
-              <Brain className="w-8 h-8 text-white" />
-            </div>
-            <h2 className="text-xl font-medium text-white mb-2">
-              IBM&apos;s Watsonx.ai flows engine
-            </h2>
-            <p className="text-gray-400">
-              Learn more about IBM&apos;s Watsonx.ai and try it yourself.
-            </p>
-          </div>
-        </Link>
-      </div>
-
-      {/* Technical Details Section */}
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-2xl font-medium text-white mb-6">
-          Technical Features
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-zinc-900 rounded-lg p-6">
-            <h3 className="text-lg font-medium text-white mb-3">
-              <Zap className="w-5 h-5 inline-block mr-2" />
-              LangGraph Integration
-            </h3>
-            <p className="text-gray-400">
-              Advanced language processing with state management and tool
-              integration capabilities.
-            </p>
-          </div>
-
-          <div className="bg-zinc-900 rounded-lg p-6">
-            <h3 className="text-lg font-medium text-white mb-3">
-              <Shield className="w-5 h-5 inline-block mr-2" />
-              Secure Authentication
-            </h3>
-            <p className="text-gray-400">
-              Built-in Clerk authentication with protected routes and user
-              management.
-            </p>
-          </div>
-
-          <div className="bg-zinc-900 rounded-lg p-6">
-            <h3 className="text-lg font-medium text-white mb-3">
-              <Cpu className="w-5 h-5 inline-block mr-2" />
-              Convex Database
-            </h3>
-            <p className="text-gray-400">
-              Real-time database with automatic caching and optimized queries
-              for chat history.
-            </p>
-          </div>
-
-          <div className="bg-zinc-900 rounded-lg p-6">
-            <h3 className="text-lg font-medium text-white mb-3">
-              <BookOpen className="w-5 h-5 inline-block mr-2" />
-              External APIs
-            </h3>
-            <p className="text-gray-400">
-              Integration with multiple external services including YouTube,
-              Google Books, and Wikipedia.
-            </p>
+        {/* Technical Details Section */}
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-8">
+            Technical Features
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                icon: <Zap />,
+                title: "LangGraph Integration",
+                description: "Advanced language processing with state management and tool integration capabilities."
+              },
+              {
+                icon: <Shield />,
+                title: "Secure Authentication",
+                description: "Built-in Clerk authentication with protected routes and user management."
+              },
+              {
+                icon: <Database />,
+                title: "Convex Database",
+                description: "Real-time database with automatic caching and optimized queries for chat history."
+              },
+              {
+                icon: <BookOpen />,
+                title: "External APIs",
+                description: "Integration with multiple external services including YouTube, Google Books, and Wikipedia."
+              }
+            ].map((feature, index) => (
+              <div key={index} className="backdrop-blur-sm bg-zinc-900/50 rounded-2xl p-6 border border-white/5">
+                <h3 className="text-lg font-medium text-white mb-3 flex items-center gap-2">
+                  <span className="text-white">
+                    {feature.icon}
+                  </span>
+                  {feature.title}
+                </h3>
+                <p className="text-gray-400">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
+
+      {/* Add the same animation styles as in the home page */}
+      <style jsx global>{`
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes fade-in-up {
+          from { 
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to { 
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes gradient {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .animate-fade-in {
+          animation: fade-in 1s ease-out;
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 1s ease-out;
+        }
+        .animate-gradient {
+          background-size: 200% auto;
+          animation: gradient 8s linear infinite;
+        }
+      `}</style>
     </main>
   );
 };

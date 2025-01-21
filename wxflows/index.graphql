@@ -6,6 +6,7 @@ schema
       "google_books/index.graphql"
       "wikipedia/index.graphql"
       "math/index.graphql"
+      "weather/index.graphql"
     ]
   ) {
   query: Query
