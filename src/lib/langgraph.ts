@@ -21,6 +21,26 @@ import {
 } from "@langchain/core/prompts";
 import SYSTEM_MESSAGE from "../../constants/systemMessage";
 
+// Add these type definitions at the top of the file
+interface TC_FunctionParameter {
+  type: string;
+  properties: Record<string, any>;
+  required: string[];
+}
+
+interface TC_Function {
+  name: string;
+  description: string;
+  parameters: TC_FunctionParameter;
+}
+
+interface TC_FunctionTool {
+  type: 'function';
+  function: TC_Function;
+}
+
+type TC_Tool = TC_FunctionTool;
+
 // Trim the messages to manage conversation history
 const trimmer = trimMessages({
   maxTokens: 10,
@@ -38,11 +58,11 @@ const toolClient = new wxflows({
 });
 
 // Retrieve the tools
-const tools = await toolClient.lcTools;
-const toolNode = new ToolNode(tools);
+// const tools = await toolClient.lcTools;
+// const toolNode = new ToolNode(tools);
 
-// Connect to the LLM provider with better tool instructions
-const initialiseModel = () => {
+// Update initialiseModel to accept tools parameter
+const initialiseModel = (tools: any[]) => {
   const model = new ChatAnthropic({
     modelName: "claude-3-5-sonnet-20241022",
     apiKey: process.env.ANTHROPIC_API_KEY,
@@ -102,9 +122,16 @@ function shouldContinue(state: typeof MessagesAnnotation.State) {
   return END;
 }
 
-// Define a new graph
-const createWorkflow = () => {
-  const model = initialiseModel();
+// Update createWorkflow to pass tools to initialiseModel
+const createWorkflow = async () => {
+  const toolClient = new wxflows({
+    endpoint: process.env.WXFLOWS_ENDPOINT || "",
+    apikey: process.env.WXFLOWS_API_KEY,
+  });
+
+  const tools = await toolClient.lcTools;
+  const toolNode = new ToolNode(tools);
+  const model = initialiseModel(tools);
 
   return new StateGraph(MessagesAnnotation)
     .addNode("agent", async (state) => {
@@ -178,15 +205,13 @@ function addCachingHeaders(messages: BaseMessage[]): BaseMessage[] {
   return cachedMessages;
 }
 
+// Update submitQuestion to handle async workflow creation
 export async function submitQuestion(messages: BaseMessage[], chatId: string) {
-  // Add caching headers to messages
   const cachedMessages = addCachingHeaders(messages);
-  // console.log("🔒🔒🔒 Messages:", cachedMessages);
-
+  
   // Create workflow with chatId and onToken callback
-  const workflow = createWorkflow();
+  const workflow = await createWorkflow();
 
-  // Create a checkpoint to save the state of the conversation
   const checkpointer = new MemorySaver();
   const app = workflow.compile({ checkpointer });
 
@@ -200,4 +225,45 @@ export async function submitQuestion(messages: BaseMessage[], chatId: string) {
     }
   );
   return stream;
+}
+
+async function fetchTools(): Promise<TC_Tool[]> {
+  const response = await fetch('https://banbakla.us-east-a.ibm.stepzen.net/api/right-alpaca/__graphql', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Apikey ${process.env.WXFLOWS_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      query: `
+        query {
+          tc_tools {
+            ...T
+          }
+        }
+
+        fragment T on TC_Tool {
+          type
+          ... on TC_FunctionTool {
+            function {
+              name
+              description
+              parameters {
+                type
+                properties
+                required
+              }
+            }
+          }
+        }
+      `
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data.data.tc_tools;
 }

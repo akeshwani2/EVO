@@ -30,8 +30,16 @@ function sendSSEMessage(
 
 export async function POST(req: Request) {
   try {
-    const { messages, newMessage, chatId } =
-      (await req.json()) as ChatRequestBody;
+    // Validate request body
+    const body = await req.json();
+    if (!body?.messages || !body?.newMessage || !body?.chatId) {
+      return NextResponse.json(
+        { error: "Missing required fields in request body" },
+        { status: 400 }
+      );
+    }
+
+    const { messages, newMessage, chatId } = body as ChatRequestBody;
     const convex = getConvexClient();
 
     // Create stream with larger queue strategy for better performance
@@ -53,11 +61,16 @@ export async function POST(req: Request) {
         // Send initial connection established message
         await sendSSEMessage(writer, { type: StreamMessageType.Connected });
 
-        // Send user message to Convex
-        await convex.mutation(api.messages.send, {
-          chatId,
-          content: newMessage,
-        });
+        // Wrap Convex mutation in try-catch
+        try {
+          await convex.mutation(api.messages.send, {
+            chatId,
+            content: newMessage,
+          });
+        } catch (convexError) {
+          console.error("Convex mutation error:", convexError);
+          throw new Error("Failed to save message to database");
+        }
 
         // Convert messages to LangChain format
         const langChainMessages = [
@@ -119,25 +132,28 @@ export async function POST(req: Request) {
           });
         }
       } catch (error) {
-        console.error("Error in stream:", error);
+        console.error("Error in stream processing:", error);
         await sendSSEMessage(writer, {
           type: StreamMessageType.Error,
-          error: error instanceof Error ? error.message : "Unknown error",
+          error: error instanceof Error 
+            ? error.message 
+            : "An unexpected error occurred while processing your request",
         });
       } finally {
-        try {
-          await writer.close();
-        } catch (closeError) {
-          console.error("Error closing writer:", closeError);
-        }
+        await writer.close().catch(err => 
+          console.error("Error closing writer:", err)
+        );
       }
     })();
 
     return response;
   } catch (error) {
-    console.error("Error in chat API:", error);
+    console.error("Fatal error in chat API:", error);
     return NextResponse.json(
-      { error: "Failed to process chat request" } as const,
+      { 
+        error: "Failed to process chat request",
+        details: error instanceof Error ? error.message : "Unknown error"
+      },
       { status: 500 }
     );
   }
