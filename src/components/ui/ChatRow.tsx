@@ -41,7 +41,7 @@ function ChatRow({
             isActive && "bg-zinc-800/60"
         )} onClick={handleClick}>
             <div className="flex flex-col">
-                <p className="text-sm text-white/70 truncate flex-1 font-medium truncate max-w-[200px]">
+                <p className="text-sm text-white/70 truncate flex-1 font-medium truncate max-w-[175px]">
                     {lastMessage ? (
                         `${lastMessage.role === "user" ? "You: " : "AI: "}${lastMessage.content.replace(/\n/g, "\n")}`
                     ) : "New Conversation"}

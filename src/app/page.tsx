@@ -5,8 +5,22 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="min-h-screen bg-black flex items-center justify-center">
-      <div className="absolute top-4 right-4">
-        <UserButton />
+      <div className="absolute top-4 flex items-center gap-4 right-4">
+        <div className="flex items-center text-xs md:text-sm text-zinc-500 border border-white/20 rounded-lg max-w-fit px-2 py-1">
+        <div className="flex items-center pr-2">
+          <Dot className="w-5 h-5 animate-pulse text-red-500" />
+          BETA
+          </div>
+        </div>
+        <UserButton
+          afterSignOutUrl="/"
+          appearance={{
+            elements: {
+              avatarBox:
+                "h-10 w-10  rounded-md transition-shadow ring-2 ring-white/60",
+            },
+          }}
+        />
       </div>
       <section className="w-full px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8 flex flex-col items-center gap-8">
         {/* Hero */}
@@ -17,7 +31,8 @@ export default function Home() {
           <div className="flex flex-col items-center gap-4">
             {/* Description */}
             <p className="text-sm text-center text-gray-400 max-w-[600px] md:text-lg/relaxed xl:text-xl/relaxed tracking-tight">
-              EVO is an AI agent that goes beyond the ordinary, it is your personal assistant that can help you with your daily tasks
+              EVO is an AI agent that goes beyond the ordinary, it is your
+              personal assistant that can help you with your daily tasks
             </p>
             <Link href="https://wxflows.ibm.stepzen.com">
               <span className="text-gray-500 text-sm text-center sm:text-sm md:text-base lg:text-md xl:text-md border border-gray-400 rounded-full py-1 px-3 flex items-center pl-1">
@@ -52,7 +67,6 @@ export default function Home() {
             <div className="flex items-center gap-4">
               <SignInButton
                 mode="modal"
-                
                 fallbackRedirectUrl={"/dashboard"}
                 forceRedirectUrl={"/dashboard"}
               >
@@ -74,7 +88,7 @@ export default function Home() {
         </div>
 
         {/* Features grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
           {[
             {
               title: "YouTube",
@@ -100,7 +114,7 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </section>
     </main>
   );

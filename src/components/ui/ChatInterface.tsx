@@ -277,8 +277,8 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
           {/* loading indicator */}
           {isLoading && !streamedResponse && (
             <div className="flex justify-start animate-in fade-in-0">
-              <div className="rounded-2xl px-4 py-3 bg-zinc-800 text-white rounded-bl-none shadow-sm ring-1 ring-inset ring-white/20">
-              <span className="animate-slide-right tracking-tighter text-lg bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">EVO</span>
+              <div className="rounded-2xl px-3 py-2 bg-zinc-800 text-white rounded-bl-none shadow-sm ring-1 ring-inset ring-white/20">
+              <span className="animate-slide-right tracking-tighter text-md bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">EVO</span>
               </div>
             </div>
           )}

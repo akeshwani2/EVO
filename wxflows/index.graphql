@@ -5,6 +5,7 @@ schema
       "tools.graphql"
       "google_books/index.graphql"
       "wikipedia/index.graphql"
+      "math/index.graphql"
     ]
   ) {
   query: Query

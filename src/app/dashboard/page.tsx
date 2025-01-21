@@ -33,8 +33,8 @@ export default function DashboardPage() {
               <h1 className="text-3xl md:text-4xl tracking-tighter text-white">
                 Welcome to EVO
               </h1>
-              <p className="text-base md:text-lg text-zinc-400">
-                Your AI companion for seamless productivity
+              <p className="text-base md:text-lg text-zinc-400 tracking-tight">
+                Your AI agent for seamless productivity
               </p>
             </div>
             <div className="space-y-4">

@@ -4,6 +4,7 @@ When using tools:
 - Only use the tools that are explicitly provided
 - For GraphQL queries, ALWAYS provide necessary variables in the variables field as a JSON string
 - For youtube_transcript tool, always include both videoUrl and langCode (default "en") in the variables
+- If a youtube video's link is something like "https://youtu.be/acbA1plzXFY?si=ssIejv5yPIf1Jgvu", then automatically add "https://www.youtube.com/watch?v=acbA1plzXFY" to the videoUrl
 - Structure GraphQL queries to request all available fields shown in the schema
 - Explain what you're doing when using tools
 - Share the results of tool usage with the user
