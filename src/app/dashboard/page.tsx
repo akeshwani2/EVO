@@ -2,10 +2,8 @@
 
 import {
   Star,
-  Command,
   Brain,
   Zap,
-  ArrowLeft,
   MousePointerClickIcon,
 } from "lucide-react";
 import { useMutation } from "convex/react";

@@ -34,7 +34,7 @@ const DocsPage = () => {
               For example, when you send a YouTube video link, EVO automatically:
             </p>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Extracts the video's transcription</li>
+              <li>Extracts the video&apos;s transcription</li>
               <li>Processes and analyzes the content</li>
               <li>Stores relevant information in the Convex database</li>
               <li>Provides intelligent responses based on the video context</li>

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Doc } from "../../../convex/_generated/dataModel";
 import { Button } from "@/components/ui/button";
 import { Id } from "../../../convex/_generated/dataModel";
-import { ArrowRightIcon, SendIcon } from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
 import { ChatRequestBody, StreamMessageType } from "@/lib/types";
 import { createSSEParser } from "@/lib/SSEParser";
 import { getConvexClient } from "@/lib/convex";

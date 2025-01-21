@@ -1,10 +1,7 @@
-import Image from "next/image";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { useAuth } from "@clerk/nextjs";
-import { ArrowRight, ArrowRightCircle, ArrowUpRight, Dot, User } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Dot } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { dark } from "@clerk/themes";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-black flex items-center justify-center">

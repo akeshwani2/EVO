@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { useNavigation } from "@/lib/context/navigation";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 export default function Header() {
   const { openMobileNav } = useNavigation();

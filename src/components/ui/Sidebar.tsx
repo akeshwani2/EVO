@@ -16,9 +16,7 @@ export default function Sidebar() {
   const deleteChat = useMutation(api.chats.deletChat) // This is a mutation that lets us delete a chat.
 
   const chats = useQuery(api.chats.listChats);
-  const handleClick = () => {
-    closeMobileNav();
-  };
+  
   const handleNewChat = async () => {
     const chatId = await createChat({ title: "New Chat" });
     router.push(`/dashboard/chat/${chatId}`);

@@ -1,7 +1,6 @@
 import { submitQuestion } from "@/lib/langgraph";
 import { api } from "../../../../../convex/_generated/api";
 import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs/server";
 import { AIMessage, HumanMessage, ToolMessage } from "@langchain/core/messages";
 import { getConvexClient } from "@/lib/convex";
 import {
