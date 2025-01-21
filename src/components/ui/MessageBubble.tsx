@@ -23,6 +23,7 @@ const formatMessage = (content: string): string => {
 };
 
 export function MessageBubble({ content, isUser }: MessageBubbleProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { user } = useUser();
 
   const formatTextContent = (text: string) => {
