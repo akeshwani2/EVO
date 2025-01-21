@@ -66,9 +66,9 @@ extend type Query {
         { name: "name", const: "google_books" }
         {
           name: "description"
-          const: "Retrieve information from Google Books. Find books by search string, for example to search for Daniel Keyes 'Flowers for Algernon' use q: 'intitle:flowers+inauthor:keyes'"
+          const: "Search Google Books API. Use q parameter to search by title, author, or ISBN. Example: q:'intitle:flowers+inauthor:keyes' for 'Flowers for Algernon' by Daniel Keyes."
         }
-        { name: "fields", const: "books|book" }
+        { name: "fields", const: "books" }
       ]
     )
   wikipedia: TC_GraphQL
@@ -77,7 +77,10 @@ extend type Query {
       query: "tc_graphql_tool"
       arguments: [
         { name: "name", const: "wikipedia" }
-        { name: "description", const: "Retrieve information from Wikipedia." }
+        {
+          name: "description"
+          const: "Search Wikipedia articles and retrieve content. Use search(q: String!) to find articles, and page(pageId: String!) to get specific article content."
+        }
         { name: "fields", const: "search|page" }
       ]
     )

@@ -11,7 +11,10 @@ import {
   SSE_LINE_DELIMITER,
 } from "@/lib/types";
 
-export const runtime = "edge";
+// Add explicit Edge Runtime configuration
+export const preferredRegion = 'auto'
+export const dynamic = 'force-dynamic'
+export const runtime = 'edge'
 
 function sendSSEMessage(
   writer: WritableStreamDefaultWriter<Uint8Array>,

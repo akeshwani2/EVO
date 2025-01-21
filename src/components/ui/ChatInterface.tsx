@@ -51,7 +51,7 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
     tool: string,
     input: unknown,
     output: unknown
-  ) => {
+  ): string => {
     const terminalHtml = `<div class="bg-[#1e1e1e] text-white font-mono p-2 rounded-md my-2 overflow-x-auto whitespace-normal max-w-[600px]">
       <div class="flex items-center gap-1.5 border-b border-gray-700 pb-1">
         <span class="text-red-500">●</span>
@@ -67,10 +67,11 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
 
     return `---START---\n${terminalHtml}\n---END---`;
   };
+
   const processStream = async (
     reader: ReadableStreamDefaultReader<Uint8Array>,
     onChunk: (chunk: string) => Promise<void>
-  ) => {
+  ): Promise<void> => {
     try {
       while (true) {
         const { done, value } = await reader.read();
@@ -125,7 +126,9 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
       // initialize the SSE (Server-Sent Events) connection, basically a way to push real-time updates to the client
       const response = await fetch("/api/chat/stream", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(requestBody),
       });
 
@@ -217,6 +220,7 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
 
               setMessages((prev) => [...prev, assistantMessage]);
               setStreamedResponse("");
+              setIsLoading(false);
               return;
           }
         }
