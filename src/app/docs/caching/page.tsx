@@ -1,6 +1,5 @@
 "use client"
 import { ArrowLeft, Zap, Clock, Database, LineChart } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const CachingPage = () => {
@@ -25,7 +24,7 @@ const CachingPage = () => {
             Prompt Caching System
           </h1>
           <p className="text-gray-400 text-lg">
-            Understanding EVO's intelligent caching mechanism for improved performance and reduced costs
+            Understanding EVO&apos;s intelligent caching mechanism for improved performance and reduced costs
           </p>
         </div>
 

@@ -22,6 +22,7 @@ import {
 import SYSTEM_MESSAGE from "../../constants/systemMessage";
 
 // Add these type definitions at the top of the file
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface TC_FunctionParameter {
   type: string;
   properties: Record<string, any>;
@@ -52,6 +53,7 @@ const trimmer = trimMessages({
 });
 
 // Connect to wxflows
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const toolClient = new wxflows({
   endpoint: process.env.WXFLOWS_ENDPOINT || "",
   apikey: process.env.WXFLOWS_APIKEY,
@@ -227,6 +229,7 @@ export async function submitQuestion(messages: BaseMessage[], chatId: string) {
   return stream;
 }
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 async function fetchTools(): Promise<TC_Tool[]> {
   const response = await fetch('https://banbakla.us-east-a.ibm.stepzen.net/api/right-alpaca/__graphql', {
     method: 'POST',

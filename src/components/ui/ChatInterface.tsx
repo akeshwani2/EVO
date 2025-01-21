@@ -10,6 +10,7 @@ import { createSSEParser } from "@/lib/SSEParser";
 import { getConvexClient } from "@/lib/convex";
 import { api } from "../../../convex/_generated/api";
 import { MessageBubble } from "./MessageBubble";
+import WelcomeMessage from "./WelcomeMessage";
 
 // Define a TypeScript interface that specifies what props the ChatInterface component accepts
 interface ChatInterfaceProps {
@@ -265,6 +266,7 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
       {/* Messages */}
       <section className="flex-1 overflow-y-auto p-2 md:p-0">
         <div className="max-w-4xl mx-auto p-4 space-y-3">
+          {messages?.length === 0 && <WelcomeMessage />}
           {/* messages */}
           {messages?.map((message: Doc<"messages">) => (
             <MessageBubble

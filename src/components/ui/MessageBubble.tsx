@@ -2,7 +2,6 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useUser } from "@clerk/nextjs";
-import { BotIcon } from "lucide-react";
 
 interface MessageBubbleProps {
   content: string;

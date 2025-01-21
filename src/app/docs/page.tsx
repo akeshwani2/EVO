@@ -1,15 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import React from "react";
 import {
   ArrowLeft,
   Cpu,
   BookOpen,
-  Code,
   Zap,
   Shield,
-  BugOff,
   Layers,
   Brain,
   Database,
