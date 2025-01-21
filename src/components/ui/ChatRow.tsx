@@ -43,7 +43,10 @@ function ChatRow({
             <div className="flex flex-col">
                 <p className="text-sm text-white/70 truncate flex-1 font-medium truncate max-w-[175px]">
                     {lastMessage ? (
-                        `${lastMessage.role === "user" ? "You: " : "AI: "}${lastMessage.content.replace(/\n/g, "\n")}`
+                        `${lastMessage.role === "user" ? "You: " : "AI: "}${lastMessage.content
+                            .replace(/^-+START-+\\.*?/g, '')
+                            .replace(/\n/g, " ")
+                            .trim()}`
                     ) : "New Conversation"}
                 </p>
                 {lastMessage && (

@@ -3,14 +3,14 @@ export default function WelcomeMessage() {
     <main className="bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden min-h-[500px]">
       {/* Animated background elements */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-grid-white/[0.02] -z-10 animate-fade-in" />
+        <div className="absolute inset-0 bg-grid-white/[0.02] -z-10 " />
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/5 to-transparent animate-pulse-slow" />
         <div className="absolute h-full w-full bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       </div>
 
       {/* Content Container */}
       <div className="relative px-6 lg:px-8 py-24 max-w-6xl mx-auto">
-        <div className="backdrop-blur-lg bg-zinc-900/40 rounded-3xl border border-white/10 overflow-hidden shadow-2xl animate-fade-in-up">
+        <div className="backdrop-blur-lg bg-zinc-900/40 rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
           <div className="flex flex-col md:flex-row">
             {/* Left Section */}
             <div className="md:w-2/5 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-violet-600/10 p-10 flex flex-col justify-center relative">

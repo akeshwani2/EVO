@@ -19,9 +19,11 @@ export default function DashboardPage() {
   };
   return (
     <div
-      className={` flex-1 flex items-center justify-center h-screen bg-black tracking-tight overflow-hidden fixed inset-0 ${!isMobileNavOpen ? "md:ml-[260px]" : ""}`}
+      className={`flex-1 flex items-center justify-center h-screen bg-black tracking-tight overflow-hidden fixed inset-0 ${
+        !isMobileNavOpen ? "md:ml-[260px]" : ""
+      }`}
     >
-      <div className="w-full max-w-4xl px-4">
+      <div className="w-full max-w-4xl px-4 scale-[0.85] md:scale-100">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 border border-white/60 rounded-lg p-6 md:p-8">
           {/* Left section - Welcome */}
           <div className="space-y-4 md:space-y-6">

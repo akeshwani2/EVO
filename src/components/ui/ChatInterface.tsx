@@ -265,8 +265,11 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
     <main className="flex flex-col h-[calc(100vh-theme(spacing.16))]">
       {/* Messages */}
       <section className="flex-1 overflow-y-auto p-2 md:p-0">
-        <div className="max-w-4xl mx-auto p-4 space-y-3">
-          {messages?.length === 0 && <WelcomeMessage />}
+        <div className="max-w-4xl mx-auto p-4 space-y-3 scale-[0.85] md:scale-100">
+          <div className="flex-1">
+            {messages?.length === 0 && <WelcomeMessage />}
+          </div>
+
           {/* messages */}
           {messages?.map((message: Doc<"messages">) => (
             <MessageBubble
@@ -278,9 +281,9 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
           {streamedResponse && <MessageBubble content={streamedResponse} />}
           {/* loading indicator */}
           {isLoading && !streamedResponse && (
-            <div className="flex justify-start animate-in fade-in-0">
+            <div className="flex justify-start">
               <div className="rounded-2xl px-3 py-2 bg-zinc-800 text-white rounded-bl-none shadow-sm ring-1 ring-inset ring-white/20">
-              <span className="animate-slide-right tracking-tighter text-md bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">EVO</span>
+                <span className="animate-slide-right tracking-tighter text-md bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">EVO</span>
               </div>
             </div>
           )}
@@ -290,9 +293,9 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
         </div>
       </section>
 
-      {/* Footer input */}
-      <footer className="border-t border-white/20 sticky bottom-0 p-4">
-        <form onSubmit={handleSubmit} className="mx-auto max-w-4xl relative">
+      {/* Footer input - make it fixed on mobile */}
+      <footer className="border-t border-white/20 fixed bottom-0 left-0 right-0 bg-black md:static p-4">
+        <form onSubmit={handleSubmit} className="mx-auto max-w-4xl relative scale-[0.85] md:scale-100">
           <div className="relative flex items-center">
             <input
               type="text"
