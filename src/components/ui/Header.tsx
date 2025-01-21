@@ -11,7 +11,7 @@ export default function Header() {
   const { openMobileNav } = useNavigation();
 
   return (
-    <header className=" pt-2 bg-black backdrop-blur-xl sticky top-0 z-50">
+    <header className="border-b border-white/10 pt-3 bg-black backdrop-blur-xl sticky top-0 z-50 shadow-xl shadow-white/10">
       <div className="flex items-center justify-between px-4 h-14">
         <div className="flex items-center gap-3">
           <Button
@@ -25,7 +25,7 @@ export default function Header() {
 
         </div>
         <Link href="/">
-        <div className="bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent text-3xl border border-white/10 rounded-md px-2 py-1 hover:translate-y-1 transition-all duration-200 shadow-xl shadow-white/10 hover:shadow-white/20 hover:scale-105">
+        <div className="bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent text-xl border border-white/10 rounded-md px-2 py-1 hover:translate-y-1 transition-all duration-200  hover:scale-105">
             EVO
           </div>
           </Link>

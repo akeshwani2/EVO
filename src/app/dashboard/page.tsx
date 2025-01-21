@@ -34,7 +34,7 @@ export default function DashboardPage() {
           <div className="space-y-4 md:space-y-6">
             <div className="space-y-2">
               <h1 className="text-3xl md:text-4xl tracking-tighter text-white">
-                Welcome to EVO
+                Welcome to <span className="animate-slide-right">EVO</span>
               </h1>
               <p className="text-base md:text-lg text-zinc-400">
                 Your AI companion for seamless productivity
@@ -46,7 +46,7 @@ export default function DashboardPage() {
                 ready to assist you with any challenge.
               </p>
               <button
-                className="w-full px-6 py-3 bg-white text-zinc-900 rounded-lg font-medium hover:bg-zinc-100 transition-colors flex items-center justify-center gap-2"
+                className="w-full px-6 py-3 bg-white text-zinc-900 rounded-lg font-medium hover:bg-zinc-100 transition-colors flex items-center justify-center gap-2 hover:bg-zinc-300"
                 onClick={handleNewChat}
               >
                 <MousePointerClickIcon className="w-4 h-4" />

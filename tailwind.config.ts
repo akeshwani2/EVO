@@ -9,6 +9,21 @@ export default {
   ],
   theme: {
   	extend: {
+  		keyframes: {
+  			'slide-right': {
+  				'0%': { 
+  					opacity: '0.4',
+  					transform: 'translateX(-10px)'
+  				},
+  				'100%': {
+  					opacity: '1',
+  					transform: 'translateX(0)'
+  				},
+  			},
+  		},
+  		animation: {
+  			'slide-right': 'slide-right 1s ease-in-out infinite alternate',
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

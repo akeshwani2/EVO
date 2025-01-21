@@ -6,7 +6,6 @@ schema
       "youtube_transcript/index.graphql"
       "google_books/index.graphql"
       "math/index.graphql"
-      "weather/index.graphql"
       "exchange/index.graphql"
       "curl/index.graphql"
     ]
