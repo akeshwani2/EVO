@@ -4,6 +4,7 @@ import "./globals.css";
 import ConvexClientProvider from "../../components/ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { Analytics } from "@vercel/analytics/react"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,6 +26,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log('Initializing Vercel Analytics');
+  
   return (
     <ClerkProvider
       appearance={{
@@ -48,6 +51,7 @@ export default function RootLayout({
         <html lang="en">
           <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
             {children}
+            <Analytics mode="production" debug={true} />
           </body>
         </html>
       </ConvexClientProvider>
