@@ -1,24 +1,30 @@
-type CommentsEntry {
-  body: String
+type Address {
+  city: String
+  countryRegion: String
   id: Int
-  likes: Int
-  postId: Int
-  user: User
+  postalCode: String
+  stateProvince: String
+  street: String
 }
 
-type Root {
-  comments: [CommentsEntry]
-  limit: Int
-  skip: Int
-  total: Int
+type OrdersEntry {
+  carrier: String
+  createdAt: Date
+  customerId: Int
+  id: Int
+  shippingCost: Int
+  trackingId: String
 }
 
-type User {
-  fullName: String
+type RootEntry {
+  address: Address
+  email: String
   id: Int
-  username: String
+  name: String
+  orders: [OrdersEntry]
 }
 
 type Query {
-  myQuery: Root @rest(endpoint: "https://dummyjson.com/comments")
+  myQuery: [RootEntry]
+    @rest(endpoint: "https://introspection.apis.stepzen.com/customers")
 }

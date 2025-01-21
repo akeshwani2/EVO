@@ -28,11 +28,6 @@ function sendSSEMessage(
 
 export async function POST(req: Request) {
   try {
-    const { userId } = await auth();
-    if (!userId) {
-      return new Response("Unauthorized", { status: 401 });
-    }
-
     const { messages, newMessage, chatId } =
       (await req.json()) as ChatRequestBody;
     const convex = getConvexClient();
