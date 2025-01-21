@@ -4,6 +4,8 @@ import { UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { useNavigation } from "@/lib/context/navigation";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function Header() {
   const { openMobileNav } = useNavigation();
@@ -20,20 +22,30 @@ export default function Header() {
           >
             <HamburgerMenuIcon className="h-5 w-5" />
           </Button>
-          <div className="font-semibold text-white text-lg">
-            
-          </div>
+
         </div>
-        <div className="flex items-center">
+        <Link href="/">
+        <div className="bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent text-3xl border border-white/10 rounded-md px-2 py-1 hover:translate-y-1 transition-all duration-200 shadow-xl shadow-white/10 hover:shadow-white/20 hover:scale-105">
+            EVO
+          </div>
+          </Link>
+        <div className="flex items-center gap-6">
+        {/* <Link href="/">
+        <button className="group relative inline-flex items-center justify-center px-4 py-2 text-base font-medium text-black bg-white rounded-lg hover:from-gray-800 hover:to-gray-700 transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 tracking-tighter">
+          Home
+        </button>
+        </Link> */}
+        <div>
           <UserButton
             afterSignOutUrl="/"
             appearance={{
               elements: {
                 avatarBox:
-                  "h-10 w-10 ring-2 ring-gray-200/50 ring-offset-2 rounded-md transition-shadow hover:ring-gray-300/50",
+                  "h-10 w-10  rounded-md transition-shadow ring-2 ring-white/60",
               },
             }}
           />
+        </div>
         </div>
       </div>
     </header>
